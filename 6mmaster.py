@@ -3,6 +3,17 @@ import tkinter.ttk as ttk
 
 def callback(arg1 , arg2 ,arg3):
     p1.set(e1.get())
+
+def callback2(arg1 , arg2 ,arg3):
+    p2.set(e2.get())
+def callback3(arg1 , arg2 ,arg3):
+    p3.set(e3.get())
+def callback_t1(arg1 , arg2 ,arg3):
+    l1.set("%02d:%02d:%02d"%(int(h_p_1.get()),int(m_p_1.get()),int(s_p_1.get())))
+def callback_t2(arg1 , arg2 ,arg3):
+    l2.set("%02d:%02d:%02d"%(int(h_p_2.get()),int(m_p_2.get()),int(s_p_2.get())))
+def callback_t3(arg1 , arg2 ,arg3):
+    l3.set("%02d:%02d:%02d"%(int(h_p_3.get()),int(m_p_3.get()),int(s_p_3.get())))                  
 def b1():
     pass
 
@@ -32,13 +43,13 @@ p3.set('T3')
 tk.Label(timer, textvariable=p3).grid(row=0, column=2)
 # ############### Timer First Row ############## #
 l1 = tk.StringVar()
-l1.set('00:00')
+l1.set('00:00:00')
 tk.Label(timer, textvariable=l1).grid(row=1, column=0)
 l2 = tk.StringVar()
-l2.set('00:00')
+l2.set('00:00:00')
 tk.Label(timer, textvariable=l2).grid(row=1, column=1)
 l3 = tk.StringVar()
-l3.set('00:00')
+l3.set('00:00:00')
 tk.Label(timer, textvariable=l3).grid(row=1, column=2)
 # ############### Butten ############## #
 tk.Button(timer , text = "SET" , command = b1 ).grid(row = 2 , column = 0)
@@ -63,9 +74,9 @@ patient3.grid(row = 2 , column = 0 , padx=10)
 tk.Label(patient3, text = "NAME:").grid(row=0, column=0)
 tk.Label(patient3, text = "TIME:").grid(row=1, column=0)
 
-############################################
+##
 h_p_1 = tk.StringVar()
-h_p_1.set("12")
+h_p_1.set("24")
 m_p_1 = tk.StringVar()
 m_p_1.set("59")
 s_p_1 = tk.StringVar()
@@ -79,17 +90,106 @@ tk.Spinbox(f1 ,
     textvariable = h_p_1 ,
      width = 2 , 
      state = "readonly").grid(row = 0 , column = 0)
+tk.Spinbox(f1 ,
+ from_ = 0 ,
+  to = 59 ,
+   wrap = True ,
+    textvariable = m_p_1 ,
+     width = 2 , 
+     state = "readonly").grid(row = 0 , column = 1)
+tk.Spinbox(f1 ,
+ from_ = 0 ,
+  to = 59 ,
+   wrap = True ,
+    textvariable = s_p_1 ,
+     width = 2 , 
+     state = "readonly").grid(row = 0 , column = 2)
+h_p_2 = tk.StringVar()
+h_p_2.set("24")
+m_p_2 = tk.StringVar()
+m_p_2.set("59")
+s_p_2 = tk.StringVar()
+s_p_2.set("59")
+f2 = tk.Frame(patient2)
+f2.grid(row= 1 , column = 1)
+tk.Spinbox(f2 ,
+ from_ = 0 ,
+  to = 23 ,
+   wrap = True ,
+    textvariable = h_p_2 ,
+     width = 2 , 
+     state = "readonly").grid(row = 0 , column = 0)
+tk.Spinbox(f2 ,
+ from_ = 0 ,
+  to = 59 ,
+   wrap = True ,
+    textvariable = m_p_2 ,
+     width = 2 , 
+     state = "readonly").grid(row = 0 , column = 1)
+tk.Spinbox(f2 ,
+ from_ = 0 ,
+  to = 59 ,
+   wrap = True ,
+    textvariable = s_p_2 ,
+     width = 2 , 
+     state = "readonly").grid(row = 0 , column = 2)     
+h_p_3 = tk.StringVar()
+h_p_3.set("24")
+m_p_3 = tk.StringVar()
+m_p_3.set("59")
+s_p_3 = tk.StringVar()
+s_p_3.set("59")
+f3 = tk.Frame(patient3)
+f3.grid(row= 1 , column = 1)
+tk.Spinbox(f3 ,
+ from_ = 0 ,
+    to = 23 ,
+    wrap = True ,
+    textvariable = h_p_3 ,
+    width = 2 , 
+    state = "readonly").grid(row = 0 , column = 0)
+tk.Spinbox(f3 ,
+    from_ = 0 ,
+    to = 59 ,
+    wrap = True ,
+    textvariable = m_p_3 ,
+    width = 2 , 
+    state = "readonly").grid(row = 0 , column = 1)
+tk.Spinbox(f3 ,
+ from_ = 0 ,
+  to = 59 ,
+   wrap = True ,
+    textvariable = s_p_3 ,
+     width = 2 , 
+     state = "readonly").grid(row = 0 , column = 2)          
 e1 = tk.StringVar()
 e1.trace("w" , callback)
 e2 = tk.StringVar()
-e2.trace("w" , callback)
+e2.trace("w" , callback2)
 e3 = tk.StringVar()
-e3.trace("w" , callback)
+e3.trace("w" , callback3)
+
+
 
 tk.Entry(patient1 ,textvariable = e1 ).grid(row = 0 , column = 1)
 
 tk.Entry(patient2 ,textvariable = e2 ).grid(row = 0 , column = 1)
 
 tk.Entry(patient3 ,textvariable = e3 ).grid(row = 0 , column = 1)
+
+
+# #############-TIMER CALBAKS-############ #
+
+h_p_1.trace("w" , callback_t1)
+m_p_1.trace("w" , callback_t1)
+s_p_1.trace("w" , callback_t1)
+h_p_2.trace("w" , callback_t2)
+m_p_2.trace("w" , callback_t2)
+s_p_2.trace("w" , callback_t2)
+h_p_3.trace("w" , callback_t3)
+m_p_3.trace("w" , callback_t3)
+s_p_3.trace("w" , callback_t3)
+
+
 
 root.mainloop()
