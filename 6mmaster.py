@@ -1,6 +1,24 @@
 import tkinter as tk
+from tkinter import Button
 import tkinter.ttk as ttk
+from time import sleep  
+from threading import Thread
 
+
+def time_format(seconds):
+    h  = int(seconds / 3600)
+    temp = seconds % 3600
+    m = temp / 60
+    s = temp % 60
+    return "%02d:%02d:%02d:"%(h ,m ,s)
+
+def counter(seconds ,var , button ):
+    button.config(state = tk.DISABLED)
+    while seconds:
+        sleep(1)
+        seconds -= 1
+        var.set(time_format(seconds))
+    button.config(state = tk.ACTIVE)
 def callback(arg1 , arg2 ,arg3):
     p1.set(e1.get())
 
@@ -14,14 +32,23 @@ def callback_t2(arg1 , arg2 ,arg3):
     l2.set("%02d:%02d:%02d"%(int(h_p_2.get()),int(m_p_2.get()),int(s_p_2.get())))
 def callback_t3(arg1 , arg2 ,arg3):
     l3.set("%02d:%02d:%02d"%(int(h_p_3.get()),int(m_p_3.get()),int(s_p_3.get())))                  
-def b1():
-    pass
-
-
+def start(number):
+    if number == 1 :
+        seconds1 = int(h_p_1.get()) * 3600 + int(m_p_1.get()) * 60 + int(s_p_1.get())
+        th1 = Thread(target = counter , args = (seconds1 , l1, b1))
+        th1.start()
+    elif number == 2 :
+        seconds2 = int(h_p_2.get()) * 3600 + int(m_p_2.get()) * 60 + int(s_p_2.get())
+        th1 = Thread(target = counter , args = (seconds2 , l2 , b2))
+        th1.start()
+    else :
+        seconds3 = int(h_p_3.get()) * 3600 + int(m_p_3.get()) * 60 + int(s_p_3.get())
+        th1 = Thread(target = counter , args = (seconds3 , l3, b3))
+        th1.start()
 
 
 root = tk.Tk()
-root.title("NURSE HELPING")
+root.title("(NURSE HELPING)-TIX")
 note = ttk.Notebook()
 note.grid(row=0, column=0)
 
@@ -52,9 +79,12 @@ l3 = tk.StringVar()
 l3.set('00:00:00')
 tk.Label(timer, textvariable=l3).grid(row=1, column=2)
 # ############### Butten ############## #
-tk.Button(timer , text = "SET" , command = b1 ).grid(row = 2 , column = 0)
-tk.Button(timer , text = "SET" , command = b1 ).grid(row = 2 , column = 1)
-tk.Button(timer , text = "SET" , command = b1 ).grid(row = 2 , column = 2)
+b1 = tk.Button(timer , text = "START" , command = lambda : start(1) )
+b1.grid(row = 2 , column = 0)
+b2 = tk.Button(timer , text = "START" , command = lambda : start(2) )
+b2.grid(row = 2 , column = 1)
+b3 = tk.Button(timer , text = "START" , command = lambda : start(3) )
+b3.grid(row = 2 , column = 2)
 tk.Button(timer , text = "CANCEL" , command = root.destroy  ).grid(row = 3 , column = 0 , columnspan = 3
  , sticky = tk.W+tk.E )
 ###########################################
@@ -76,11 +106,11 @@ tk.Label(patient3, text = "TIME:").grid(row=1, column=0)
 
 ##
 h_p_1 = tk.StringVar()
-h_p_1.set("24")
+h_p_1.set("00")
 m_p_1 = tk.StringVar()
-m_p_1.set("59")
+m_p_1.set("00")
 s_p_1 = tk.StringVar()
-s_p_1.set("59")
+s_p_1.set("00")
 f1 = tk.Frame(patient1)
 f1.grid(row= 1 , column = 1)
 tk.Spinbox(f1 ,
@@ -105,11 +135,11 @@ tk.Spinbox(f1 ,
      width = 2 , 
      state = "readonly").grid(row = 0 , column = 2)
 h_p_2 = tk.StringVar()
-h_p_2.set("24")
+h_p_2.set("00")
 m_p_2 = tk.StringVar()
-m_p_2.set("59")
+m_p_2.set("00")
 s_p_2 = tk.StringVar()
-s_p_2.set("59")
+s_p_2.set("00")
 f2 = tk.Frame(patient2)
 f2.grid(row= 1 , column = 1)
 tk.Spinbox(f2 ,
@@ -134,11 +164,11 @@ tk.Spinbox(f2 ,
      width = 2 , 
      state = "readonly").grid(row = 0 , column = 2)     
 h_p_3 = tk.StringVar()
-h_p_3.set("24")
+h_p_3.set("00")
 m_p_3 = tk.StringVar()
-m_p_3.set("59")
+m_p_3.set("00")
 s_p_3 = tk.StringVar()
-s_p_3.set("59")
+s_p_3.set("00")
 f3 = tk.Frame(patient3)
 f3.grid(row= 1 , column = 1)
 tk.Spinbox(f3 ,
