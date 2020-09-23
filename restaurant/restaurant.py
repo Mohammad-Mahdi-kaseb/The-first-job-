@@ -1,6 +1,6 @@
 import tkinter as tk 
 import tkinter.ttk as ttk
-
+from tkinter import PhotoImage
 
 # ################food information ##################### #
 
@@ -8,7 +8,8 @@ i = {
     "1" : {"name" :"Akbar Chicken",
           "rating" : 5 , 
           "review" : 47 ,
-          "price" : 2.58 } 
+          "price" : 2.58,
+          "img" : "restaurant/img/fd9e168e23ededfd719b7787fb3501ba.gif" } 
 }
 
 # ######################### Master ##################### #
@@ -53,5 +54,7 @@ price = str(i["1"]["price"]) + "$"
 tk.Label(food1, text = price , cnf=bgak3 ).grid(row = 2 , column = 0 , pady = 5 )
 
 
+img = PhotoImage(file =i["1"]["img"]).subsample(2)
+tk.Label(food1, image = img).grid(row = 0 , column = 1 , rowspan = 3 )
 
 root.mainloop()
