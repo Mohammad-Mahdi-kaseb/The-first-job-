@@ -16,6 +16,13 @@ i = {
           "price" : 2.58,
           "img" : "restaurant/img/fd9e168e23ededfd719b7787fb3501ba.gif" } 
 }
+d = {
+    0: {"name" :"cola",
+          "price" : 2.58},
+    1 : {"name" :"pepsi",
+          "price" : 2.58 }
+    } 
+
 
 # ######################### Master ##################### #
 bgak = {"bg" : "#00897B"}
@@ -42,7 +49,7 @@ rescipt = tk.Frame()
 note.add(food , text = "FOOD")
 note.add(drinks , text = "DRINKS")
 note.add(rescipt , text = "RESCIPT")
-
+############## food tab ###############
 for b in range(len(i)):
     food1 = tk.Frame(food , cnf=bgak )
     food1.grid(row=b , column = 0 , sticky = tk.E+tk.W)
@@ -59,6 +66,23 @@ for b in range(len(i)):
 
     img = PhotoImage(file =i["1"]["img"]).subsample(2)
     tk.Label(food1, image = img).grid(row = 0 , column = 1 , rowspan = 3 )
+
+
+ ######################################
+
+for s in range(len(d)):
+    food1 = tk.Frame(drinks , cnf=bgak )
+    food1.grid(row=s , column = 0 , sticky = tk.E+tk.W)
+
+    name = d[s]["name"]
+    tk.Label(food1, text = name, cnf=bgak1 ).grid(row = 0 , column = 0 , pady = 5 , padx = 5 )
+
+    
+    price = str(d[s]["price"]) + "$"
+    tk.Label(food1, text = price , cnf=bgak3 ).grid(row = 2 , column = 0 , pady = 5 )
+
+
+    
 
 
 root.mainloop()
