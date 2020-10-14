@@ -3,6 +3,19 @@ import tkinter.ttk as ttk
 from tkinter import PhotoImage
 import pandas as pd 
 
+
+
+
+
+
+def cnt(sign , j):
+      j 
+      if sign == "+":
+            print("+" , j)
+      else:
+            print("-" , j)
+
+
 # ################food information ##################### #
 
 i = {
@@ -10,6 +23,7 @@ i = {
           "rating" : 5 , 
           "review" : 47 ,
           "price" : 2.58,
+          "count" : 2,
           "img" : "restaurant/img/fd9e168e23ededfd719b7787fb3501ba.gif"} , 
     "2" : {"name" :"Mahi Polo",
           "rating" : 5 , 
@@ -67,8 +81,12 @@ for b in range(len(i)):
 
     img = PhotoImage(file =i["1"]["img"]).subsample(2)
     tk.Label(food1, image = img).grid(row = 0 , column = 1 , rowspan = 3 )
-
-
+    tk.Label(food1 , text = i[b]["count"],font=("times" , 15), bg="#ffc107").grid(row = 0 ,column = 1 , sticky = tk.S)
+    tk.Button(food1 , text = "+" , cammand = lambda x=str(b):cnt("+",x)).grid(row = 0 , column =2)
+    tk.Button(food1 , text = "-" , cammand = lambda x=str(b):cnt("-",y)).grid(row = 0 , column =3)
+ 
+ 
+ 
  ######################################
 
 for s in range(len(d)):
