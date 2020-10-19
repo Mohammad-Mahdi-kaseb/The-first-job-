@@ -83,7 +83,7 @@ for b in range(len(i)):
     tk.Label(food1, image = img).grid(row = 0 , column = 1 , rowspan = 3 )
     tk.Label(food1 , text = i[b]["count"],font=("times" , 15), bg="#ffc107").grid(row = 0 ,column = 1 , sticky = tk.S)
     tk.Button(food1 , text = "+" , cammand = lambda x=str(b):cnt("+",x)).grid(row = 0 , column =2)
-    tk.Button(food1 , text = "-" , cammand = lambda x=str(b):cnt("-",y)).grid(row = 0 , column =3)
+    tk.Button(food1 , text = "-" , cammand = lambda y=str(b):cnt("-",y)).grid(row = 0 , column =3)
  
  
  
