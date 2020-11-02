@@ -1,18 +1,35 @@
 import tkinter as tk
 import tkinter.ttk as ttk 
 import hashlib
+import json 
 #import pygame 
+def read_json(address):
+  with open(address) as file:
+      return json.load(file)
+
+
+def write_json(address , data):
+  with open (address , "w" , encoding="utf-8" ) as file :
+    json.dump(data, file , ensure_ascii=False , indent=4)
+
 
 def to_shal(password):
   return hashlib.sha1(password.encode("utf-8")).hexdigest()
+
+    
+        
 
 def register():
     input_user =  form_user.get()
     input_pass =  to_shal(form_pass.get())
     form_user.set("")
     form_pass.set("")
-    with open("users.txt" , "a") as file:
-        file.write(f"User:{input_user}Password:{input_pass}\n")
+    file = read_json("names.json")
+    data ={"username" :input_user,"password" :input_pass}
+    file.append(data)
+    write_json("names.json" , file)
+    
+
 def login():
   pass
 
